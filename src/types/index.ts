@@ -12,6 +12,17 @@ export interface TabItem {
   icon?: React.ComponentType<any>;
   disabled?: boolean;
 }
+interface TabSection {
+  title: string;
+  description: string;
+  features: string[];
+}
+
+export interface TabInfo {
+  bus: TabSection;
+  car: TabSection;
+  hotel: TabSection;
+}
 
 export interface SearchState {
   activeTab: "flight" | "bus" | "car" | "hotel";

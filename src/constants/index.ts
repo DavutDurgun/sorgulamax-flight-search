@@ -1,1 +1,1 @@
-export { tabs } from "./menu";
+export * from "./menu";

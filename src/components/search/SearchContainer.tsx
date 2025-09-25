@@ -3,13 +3,15 @@
 import { useSearchStore } from "@/stores/useSearchStore";
 import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
-import SearchTabs from "./SearchTabs";
+
+const SearchTabs = lazy(() => import("./SearchTabs"));
+const ComingSoonContent = lazy(() => import("./ComingSoonContent"));
 
 const SearchContainer = () => {
   const { activeTab } = useSearchStore();
 
   return (
-    <div className="w-full max-w-6xl mx-auto mt-16">
+    <div className="relative w-full max-w-6xl mx-auto mt-16">
       {/* Search Sections */}
       <div className="relative bg-white rounded-xl shadow-lg">
         <ErrorBoundary
@@ -28,7 +30,7 @@ const SearchContainer = () => {
             </div>
           }
         >
-          <div className="absolute w-full top-[-30] left-0 flex justify-center">
+          <div className="absolute w-full top-[-30px] left-0 flex justify-center">
             <div className="bg-white px-4 py-2 rounded-full shadow-md border border-gray-200">
               <SearchTabs />
             </div>
@@ -40,7 +42,11 @@ const SearchContainer = () => {
               </div>
             }
           >
-            {activeTab === "flight" ? "SearchForm" : "ComingSoonLoader"}
+            {activeTab === "flight" ? (
+              "SearchForm"
+            ) : (
+              <ComingSoonContent tab={activeTab} />
+            )}
           </Suspense>
         </ErrorBoundary>
       </div>
