@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { MainLayout } from "@/components/layout";
 import { LoadingSkeleton } from "@/components/ui/skeleton/compound";
 import { Metadata } from "next";
+import { SearchContainer } from "@/components/search";
 
 export const metadata: Metadata = {
   title: "SorgulaMax - Türkiye'nin Seyahat Arama Motoru",
@@ -23,10 +24,11 @@ export default function HomePage() {
       <Suspense
         fallback={<LoadingSkeleton.Card className="max-w-6xl mx-auto" />}
       >
-        SearchContainer
+        <SearchContainer />
       </Suspense>
       {/* Additional Content Sections */}
-      PopularDestinations WhyChooseUs
+      <div>PopularDestinations</div>
+      <div> WhyChooseUs</div>
     </MainLayout>
   );
 }
