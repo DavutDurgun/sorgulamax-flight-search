@@ -3,6 +3,7 @@
 import { useSearchStore } from "@/stores/useSearchStore";
 import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
+import SearchForm from "./form/SearchForm";
 
 const SearchTabs = lazy(() => import("./SearchTabs"));
 const ComingSoonContent = lazy(() => import("./ComingSoonContent"));
@@ -43,7 +44,7 @@ const SearchContainer = () => {
             }
           >
             {activeTab === "flight" ? (
-              "SearchForm"
+              <SearchForm />
             ) : (
               <ComingSoonContent tab={activeTab} />
             )}
