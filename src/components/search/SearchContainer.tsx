@@ -4,6 +4,7 @@ import { useSearchStore } from "@/stores/useSearchStore";
 import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import SearchForm from "./form/SearchForm";
+import FlightResults from "../results/FlightResults";
 
 const SearchTabs = lazy(() => import("./SearchTabs"));
 const ComingSoonContent = lazy(() => import("./ComingSoonContent"));
@@ -78,7 +79,7 @@ const SearchContainer = () => {
                 </div>
               }
             >
-              FlightResults
+              <FlightResults />
             </Suspense>
           </ErrorBoundary>
         </div>

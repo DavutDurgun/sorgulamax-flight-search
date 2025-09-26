@@ -156,3 +156,22 @@ export type AutocompleteResponse = {
   results: AutocompleteLocation[];
   requestId: number;
 };
+
+export type Airport = {
+  is_city: boolean;
+  code: string;
+  name: string;
+  city_code: string;
+  city_name: string;
+  country_code: string;
+  country_name: string;
+};
+
+export type AirportListResult = Record<string, Airport>;
+
+export type Airline = {
+  code: string;
+  name: string;
+};
+
+export type AirlineListResult = Record<string, Airline>;
