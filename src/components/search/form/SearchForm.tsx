@@ -89,6 +89,7 @@ export const SearchForm = () => {
             className={cn(
               "grid gap-4",
               "grid-cols-1",
+              "sm:[grid-template-columns:65fr_35fr]",
               "md:[grid-template-columns:50fr_28fr_22fr]",
               "lg:[grid-template-columns:41fr_22fr_13fr_13fr]"
             )}
@@ -102,7 +103,7 @@ export const SearchForm = () => {
               )}
             >
               {/* Nereden */}
-              <div className="flex-1 min-w-20 bg-white">
+              <div className="flex-1 md:min-w-20 bg-white">
                 <div className="flex items-center leading-none">
                   <PlaneTakeoff className="w-4 h-4 text-gray-400 inline-block  mr-1" />
                   <label className="block text-sm font-medium text-gray-600">
@@ -141,7 +142,7 @@ export const SearchForm = () => {
               <div className="absolute top-0 left-1/2 h-full w-px -translate-x-1/2 bg-gray-200 z-1"></div>
 
               {/* Nereye */}
-              <div className="flex-1 min-w-0">
+              <div className="flex-1 md:min-w-20">
                 <div className="flex items-center">
                   <PlaneLanding className="w-4 h-4 text-gray-400 inline-block  mr-1" />
                   <label className="block text-xs font-medium text-gray-600">
@@ -168,7 +169,7 @@ export const SearchForm = () => {
                 "md:col-span-1"
               )}
             >
-              <div className="flex-1 min-w-15 mr-1">
+              <div className="flex-1 md:min-w-15 mr-1">
                 <label className="block text-xs font-medium text-gray-600">
                   Gidiş Tarihi
                 </label>
@@ -183,7 +184,7 @@ export const SearchForm = () => {
               {/* Separator */}
               <div className="absolute top-0 left-1/2 h-full w-px -translate-x-1/2 bg-gray-200 z-1"></div>
 
-              <div className="flex-1 min-w-0">
+              <div className="flex-1 md:min-w-15">
                 <label className="block text-xs font-medium text-gray-600 mb-1">
                   Dönüş Tarihi
                 </label>
