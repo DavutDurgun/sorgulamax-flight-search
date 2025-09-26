@@ -23,9 +23,9 @@ export default function FlightResultsWrapper() {
   };
 
   return (
-    <React.Suspense fallback={<LoadingFallback />}>
+    <Suspense fallback={<LoadingFallback />}>
       <FlightResultsInner searchParams={searchParams} />
-    </React.Suspense>
+    </Suspense>
   );
 }
 
@@ -41,7 +41,7 @@ function LoadingFallback() {
           <span className="text-sm text-gray-600">Uçuşlar aranıyor...</span>
         </div>
       </div>
-      <LoadingSkeleton.List count={3} />
+      <LoadingSkeleton.FlightResults count={4} />
     </div>
   );
 }

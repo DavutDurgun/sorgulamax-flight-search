@@ -180,7 +180,7 @@ export function AutocompleteInput({
       {showSuggestions && (
         <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-b-lg shadow-lg z-50 max-h-60 overflow-hidden overflow-y-auto animate-fade-in  w-[300px]">
           {loading ? (
-            "LoadingSkeleton AutocompleteResults"
+            <LoadingSkeleton.AutocompleteResults />
           ) : (
             <ul className="py-1  w-[300px]">
               {suggestions.map((option, index) => (

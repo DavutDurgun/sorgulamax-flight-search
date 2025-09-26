@@ -5,6 +5,7 @@ import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import SearchForm from "./form/SearchForm";
 import FlightResults from "../results/FlightResults";
+import { LoadingSkeleton } from "@/components/ui/skeleton/compound";
 
 const SearchTabs = lazy(() => import("./SearchTabs"));
 const ComingSoonContent = lazy(() => import("./ComingSoonContent"));
@@ -37,11 +38,14 @@ const SearchContainer = () => {
               <SearchTabs />
             </div>
           </div>
+
           <Suspense
             fallback={
-              <div role="status" arial-live="polite" className="p-6">
-                loading searchForm...
-              </div>
+              activeTab === "flight" ? (
+                <LoadingSkeleton.SearchForm />
+              ) : (
+                <LoadingSkeleton.ComingSoonContent />
+              )
             }
           >
             {activeTab === "flight" ? (
@@ -72,13 +76,7 @@ const SearchContainer = () => {
               </div>
             }
           >
-            <Suspense
-              fallback={
-                <div role="status" arial-live="polite" className="p-6">
-                  Loading list
-                </div>
-              }
-            >
+            <Suspense fallback={<LoadingSkeleton.FlightResults count={4} />}>
               <FlightResults />
             </Suspense>
           </ErrorBoundary>
