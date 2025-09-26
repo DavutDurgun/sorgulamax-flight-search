@@ -12,9 +12,18 @@ export interface SearchState {
   hasSearched: boolean;
   error: string | null;
 
+  // Autocomplete state
+  originSuggestions: AutocompleteLocation[];
+  destinationSuggestions: AutocompleteLocation[];
+  isLoadingOrigin: boolean;
+
   // Actions
   setActiveTab: (tab: SearchState["activeTab"]) => void;
   searchFlights: () => Promise<void>;
+  updateFormData: (data: Partial<SearchFormData>) => void;
+  setOriginSuggestions: (suggestions: AutocompleteLocation[]) => void;
+  setDestinationSuggestions: (suggestions: AutocompleteLocation[]) => void;
+  clearError: () => void;
 }
 
 interface TabSection {
@@ -58,6 +67,7 @@ export interface SearchFormData {
     ADT: number;
   };
   tripType: "one-way" | "round-trip";
+  isNonStop?: boolean;
 }
 
 export interface FlightDuration {

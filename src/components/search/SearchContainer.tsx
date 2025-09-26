@@ -32,7 +32,7 @@ const SearchContainer = () => {
           }
         >
           <div className="absolute w-full top-[-30px] left-0 flex justify-center">
-            <div className="bg-white px-4 py-2 rounded-full shadow-md border border-gray-200">
+            <div className="bg-white px-1.5 py-1.5 rounded-full shadow-md border border-gray-200">
               <SearchTabs />
             </div>
           </div>

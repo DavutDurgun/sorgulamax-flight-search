@@ -7,15 +7,21 @@ export const useSearchStore = create<SearchState>((set, get) => ({
   formData: {
     origin: null,
     destination: null,
-    departureDate: "",
+    departureDate: "2025-09-26",
     returnDate: "",
     passengers: { ADT: 1 },
     tripType: "one-way",
+    isNonStop: false,
   },
 
   // Initial UI state
   activeTab: "flight",
   isSearching: false,
+
+  // Initial autocomplete state
+  originSuggestions: [],
+  destinationSuggestions: [],
+  isLoadingOrigin: false,
 
   // Initial results state
   results: [],
@@ -24,6 +30,18 @@ export const useSearchStore = create<SearchState>((set, get) => ({
 
   // Actions
   setActiveTab: (tab) => set({ activeTab: tab }),
+
+  updateFormData: (data) => {
+    set((state) => ({ formData: { ...state.formData, ...data }, error: null }));
+  },
+
+  setOriginSuggestions: (suggestions) => {
+    set({ originSuggestions: suggestions });
+  },
+
+  setDestinationSuggestions: (suggestions) => {
+    set({ destinationSuggestions: suggestions });
+  },
 
   searchFlights: async () => {
     console.log("Starting flight search...");
@@ -35,28 +53,29 @@ export const useSearchStore = create<SearchState>((set, get) => ({
       returnDate,
       passengers,
       tripType,
+      isNonStop,
     } = state.formData;
 
-    // Validation
-    // if (!origin || !destination) {
-    //   set({ error: "Lütfen kalkış ve varış yerlerini seçiniz." });
-    //   return;
-    // }
+    // Basic validation
+    if (!origin || !destination) {
+      set({ error: "Lütfen kalkış ve varış yerlerini seçiniz." });
+      return;
+    }
 
-    // if (origin.code === destination.code) {
-    //   set({ error: "Kalkış ve varış yerleri aynı olamaz." });
-    //   return;
-    // }
+    if (origin.code === destination.code) {
+      set({ error: "Kalkış ve varış yerleri aynı olamaz." });
+      return;
+    }
 
-    // if (!departureDate) {
-    //   set({ error: "Lütfen gidiş tarihini seçiniz." });
-    //   return;
-    // }
+    if (!departureDate) {
+      set({ error: "Lütfen gidiş tarihini seçiniz." });
+      return;
+    }
 
-    // if (tripType === "round-trip" && !returnDate) {
-    //   set({ error: "Gidiş-dönüş için dönüş tarihini seçiniz." });
-    //   return;
-    // }
+    if (tripType === "round-trip" && !returnDate) {
+      set({ error: "Gidiş-dönüş için dönüş tarihini seçiniz." });
+      return;
+    }
 
     set({
       isSearching: true,
@@ -67,19 +86,17 @@ export const useSearchStore = create<SearchState>((set, get) => ({
 
     try {
       const searchRequest = {
-        // departure_date: departureDate,
-        // destination: destination.code,
-        // origin: origin.code,
-        // passengers: passengers,
-
-        departure_date: "2025-09-26",
-        destination: "ESB",
-        origin: "RZV",
-        passengers: { ADT: 1 },
+        departure_date: departureDate,
+        destination: destination.code,
+        origin: origin.code,
+        passengers: passengers,
         ...(tripType === "round-trip" &&
           returnDate && {
             return_date: returnDate,
           }),
+        filters: {
+          isNonStop: isNonStop ? 1 : 0,
+        },
       };
       console.debug("Search request:", searchRequest);
 
@@ -107,5 +124,9 @@ export const useSearchStore = create<SearchState>((set, get) => ({
         }
       }
     }
+  },
+
+  clearError: () => {
+    set({ error: null });
   },
 }));
