@@ -12,6 +12,10 @@ Modern, ölçeklenebilir ve kullanıcı dostu bir uçuş arama uygulaması. Next
 - API ile dinamik veri çekme
 - Gelişmiş state ve cache yönetimi
 
+## Demo
+
+Tıkla= https://sorgulamax-flight-search.vercel.app
+
 ## Projeyi Çalıştırma
 
 1. Bağımlılıkları yükleyin:
