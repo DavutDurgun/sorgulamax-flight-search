@@ -186,7 +186,9 @@ export function AutocompleteInput({
               {suggestions.map((option, index) => (
                 <li
                   key={`${option.code}-${option.type}`}
-                  ref={(el) => (itemRefs.current[index] = el)}
+                  ref={(el) => {
+                    itemRefs.current[index] = el;
+                  }}
                   className={cn(
                     "px-4 py-3 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0",
                     "hover:bg-gray-50 active:bg-gray-100",

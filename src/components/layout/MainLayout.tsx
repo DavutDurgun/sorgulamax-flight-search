@@ -12,10 +12,7 @@ interface MainLayoutProps {
   errorBoundaryResetKeys?: any[];
 }
 
-export default function MainLayout({
-  children,
-  errorBoundaryResetKeys,
-}: MainLayoutProps) {
+export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -25,24 +22,19 @@ export default function MainLayout({
       <main className="relative" role="main" aria-live="polite">
         <div className="container mx-auto px-4 -mt-20 relative z-10">
           <ErrorBoundary
-            resetKeys={errorBoundaryResetKeys}
-            fallbackRender={({ resetError }) => (
-              <div className="max-w-6xl mx-auto">
-                <div className="mb-4">
-                  <p className="text-center text-red-700">
-                    Bir hata oluştu. Sayfayı yeniden deneyebilirsiniz.
-                  </p>
-                </div>
-                <div className="flex justify-center">
+            fallback={
+              <div className="p-8 text-center text-red-700">
+                Bir hata oluştu. Sayfayı yeniden deneyebilirsiniz.
+                <div className="mt-4">
                   <button
-                    className="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-                    onClick={() => resetError?.()}
+                    onClick={() => window.location.reload()}
+                    className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition"
                   >
                     Yeniden Dene
                   </button>
                 </div>
               </div>
-            )}
+            }
           >
             <Suspense
               fallback={<LoadingSkeleton.Card className="max-w-6xl mx-auto" />}
