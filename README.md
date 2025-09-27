@@ -55,13 +55,13 @@ src/
     ui/
       skeleton/
       DatePicker/
-    constants/
-    hooks/
-    mock/
-    services/
-    stores/
-    types/
-    utils/
+ constants/
+ hooks/
+ mock/
+ services/
+ stores/
+ types/
+ utils/
 public/
   file.svg
   globe.svg
